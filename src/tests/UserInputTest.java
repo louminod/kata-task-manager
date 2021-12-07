@@ -85,16 +85,15 @@ public class UserInputTest {
 
     @Test
     public void testRemoveInstruction() {
-        final int ID = 1;
         List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task(ID, State.TODO, ""));
-        IOInterface io = new IOFakeImpl(String.format("- %d", ID));
+        taskList.add(new Task( State.TODO, ""));
+        IOInterface io = new IOFakeImpl(String.format("- %d", Task.getId()));
         String input = io.readInput();
         Instruction instruction = interpreter.interpretUserInput(input);
         interpreter.interpretInstruction(taskList, instruction);
         boolean exist = false;
         for (Task t : taskList) {
-            if (t.getId() == ID) {
+            if (t.getId() == Task.getId()) {
                 exist = true;
                 break;
             }
@@ -104,10 +103,9 @@ public class UserInputTest {
 
     @Test
     public void testDoneInstruction() {
-        final int ID = 1;
         List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task(ID, State.TODO, ""));
-        IOInterface io = new IOFakeImpl(String.format("x %d", ID));
+        taskList.add(new Task( State.TODO, ""));
+        IOInterface io = new IOFakeImpl(String.format("x %d", Task.getId()));
         String input = io.readInput();
         Instruction instruction = interpreter.interpretUserInput(input);
         Task task = interpreter.interpretInstruction(taskList, instruction);
@@ -116,10 +114,9 @@ public class UserInputTest {
 
     @Test
     public void testTodoInstruction() {
-        final int ID = 1;
         List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task(ID, State.DONE, ""));
-        IOInterface io = new IOFakeImpl(String.format("o %d", ID));
+        taskList.add(new Task( State.DONE, ""));
+        IOInterface io = new IOFakeImpl("o 1");
         String input = io.readInput();
         Instruction instruction = interpreter.interpretUserInput(input);
         Task task = interpreter.interpretInstruction(taskList, instruction);

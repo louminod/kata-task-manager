@@ -1,18 +1,18 @@
 package manager.model;
 
 public class Task {
-    private final int id;
+    private static int id;
     private State state;
     private final String description;
 
-    public Task(int id, State state, String description) {
-        this.id = id;
+    public Task(State state, String description) {
+        Task.id += 1;
         this.state = state;
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public static int getId() {
+        return Task.id;
     }
 
     public State getState() {

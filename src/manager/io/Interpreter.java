@@ -32,11 +32,10 @@ public class Interpreter {
     }
 
     public Task interpretInstruction(List<Task> taskList, Instruction instruction) {
-        int id = taskList.size() == 0 ? 1 : taskList.get(taskList.size() - 1).getId() + 1;
 
         switch (instruction.action()) {
             case ADD -> {
-                Task task = new Task(id, State.TODO, instruction.parameter());
+                Task task = new Task(State.TODO, instruction.parameter());
                 taskList.add(task);
                 return task;
             }
