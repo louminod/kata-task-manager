@@ -1,18 +1,24 @@
 package manager.model;
 
 public class Task {
-    private static int id;
+    private static int count;
+    private final int id;
     private State state;
     private final String description;
 
     public Task(State state, String description) {
-        Task.id += 1;
+        count++;
+        this.id = count;
         this.state = state;
         this.description = description;
     }
 
-    public static int getId() {
-        return Task.id;
+    public int getId() {
+        return this.id;
+    }
+
+    public static int getCount() {
+        return Task.count;
     }
 
     public State getState() {

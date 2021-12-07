@@ -7,8 +7,8 @@ import manager.model.Task;
 
 import java.util.List;
 
-public class Interpreter {
-    public Instruction interpretUserInput(String input) {
+public abstract class Interpreter {
+    public static Instruction interpretUserInput(String input) {
         String inputAction = input.split(" ")[0];
 
         switch (inputAction) {
@@ -31,7 +31,7 @@ public class Interpreter {
         return null;
     }
 
-    public Task interpretInstruction(List<Task> taskList, Instruction instruction) {
+    public static Task interpretInstruction(List<Task> taskList, Instruction instruction) {
 
         switch (instruction.action()) {
             case ADD -> {
@@ -62,7 +62,7 @@ public class Interpreter {
         return null;
     }
 
-    Task getTaskWithId(List<Task> taskList, int id) {
+    private static Task getTaskWithId(List<Task> taskList, int id) {
         for (Task task : taskList) {
             if (task.getId() == id) {
                 return task;
